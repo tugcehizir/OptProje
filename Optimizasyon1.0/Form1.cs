@@ -41,11 +41,11 @@ namespace Optimizasyon1._0
             dizi = new int[str, stn];
             dizi2 = new int[str, stn];
             DiziDoldur(str, stn);
+
             int left = 100;
-            int top = 90;
+            int top = 120;
             int left2 = 155;
             
-
             for (int i = 0; i < str; i++)
             {
                 for (int k = 0; k < stn; k++)
@@ -74,7 +74,7 @@ namespace Optimizasyon1._0
                 left2 = 155;
             }
 
-            int labeltop = 90;
+            int labeltop = 120;
             int labelleft = 20;
             for (int i = 0; i < str; i++)
             {
@@ -92,11 +92,10 @@ namespace Optimizasyon1._0
             labelleft = 100;
             for (int k = 0; k < stn; k++)
             {
-                
                 int i = 0;
                 LabelKutu[i, k] = new Label();
                 LabelKutu[i, k].Left = labelleft;
-                LabelKutu[i, k].Top = 60;
+                LabelKutu[i, k].Top = 90;
                 LabelKutu[i, k].Width = 60;
                 LabelKutu[i, k].Text = "Pazar" + (k+1);
                 this.Controls.Add(LabelKutu[i, k]);
@@ -104,15 +103,31 @@ namespace Optimizasyon1._0
                 labelleft += 90;
             }
         }
-        private void MatrisHesapla()
+        private void MatrisDoldur()
         {
             for (int i = 0; i < str; i++)
             {
                 for (int k = 0; k < stn; k++)
                 {
 
-                    dizi[i,k] = Convert.ToInt32(TextKutu[i, k].Text);
-                    dizi2[i,k] = Convert.ToInt32(TextKutu2[i, k].Text);
+                    if(Convert.ToString(TextKutu[i, k].Text).Length != 0)
+                    {
+                        dizi[i, k] = Convert.ToInt32(TextKutu[i, k].Text);
+                    }
+                    else
+                    {
+                        var LabelHataEksik = new Label();
+                        LabelHataEksik.Left = 20;
+                        LabelHataEksik.Top = 60;
+                        LabelHataEksik.Width = 300;
+                        LabelHataEksik.Text = "Eksik matris değerleri girdiniz! Bu şekilde kontrol edemezsiniz.";
+                        this.Controls.Add(LabelHataEksik);
+
+                    }
+                    if(Convert.ToString(TextKutu2[i, k].Text).Length != 0)
+                    {
+                        dizi2[i, k] = Convert.ToInt32(TextKutu2[i, k].Text);
+                    }
                 }           
             }
             //TextKutu[1, 1].Text = Convert.ToString(dizi[0, 0] + dizi2[1, 1]);
@@ -134,6 +149,7 @@ namespace Optimizasyon1._0
             KutuOlustur();
             button1.Hide();
             button2.Show();
+            //MatrisHesapla();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -148,7 +164,7 @@ namespace Optimizasyon1._0
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MatrisHesapla();
+            MatrisDoldur();
         }
     }
 }
