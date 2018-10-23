@@ -1,0 +1,9 @@
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\bin\Debug\Optimizasyon1.0.exe.config
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\bin\Debug\Optimizasyon1.0.exe
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\bin\Debug\Optimizasyon1.0.pdb
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\obj\Debug\Optimizasyon1.0.csprojResolveAssemblyReference.cache
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\obj\Debug\Optimizasyon1._0.Form1.resources
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\obj\Debug\Optimizasyon1._0.Properties.Resources.resources
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\obj\Debug\Optimizasyon1.0.csproj.GenerateResource.Cache
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\obj\Debug\Optimizasyon1.0.exe
+C:\Users\Tugce\Documents\Projeler\Optimizasyon1.0\Optimizasyon1.0\obj\Debug\Optimizasyon1.0.pdb
