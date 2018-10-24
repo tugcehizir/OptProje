@@ -19,7 +19,7 @@ namespace Optimizasyon1._0
         TextBox[,] TextKutu;
         TextBox[,] TextKutu2;
         Label[,] LabelKutu;
-        int[] U,V;
+        int[] U,V,O;
         public Form1()
         {
             InitializeComponent();
@@ -42,7 +42,8 @@ namespace Optimizasyon1._0
             LabelKutu = new Label[str, stn];
             U = new int[str];
             V = new int[stn];
-            
+            O = new int[str * stn];
+
             dizi = new int[str, stn];
             dizi2 = new int[str, stn];
             DiziDoldur(str, stn);
@@ -137,9 +138,17 @@ namespace Optimizasyon1._0
                     }
                 }           
             }
-           // TextKutu[1, 1].Text = Convert.ToString(dizi[0, 0] + dizi2[1, 1]);
-        
+            // TextKutu[1, 1].Text = Convert.ToString(dizi[0, 0] + dizi2[1, 1]);
+            for (int i = 0; i < str; i++)
+            {
+                U[i] = -25;
+            }
+            for (int i = 0; i < stn; i++)
+            {
+                V[i] = -25;
+            }
             MatrisHesapla();
+            OptimumHesapla();
         }
         private void DiziDoldur(int a, int b)
         {
@@ -158,11 +167,10 @@ namespace Optimizasyon1._0
         {
             //Buraya geldi1
             U[0] = 0;
+         
             int a = 10,b=0;
-            while (a == 10)
+            for (int p = 0; p < 5; p++)
             {
-                b++;
-                if (b == 10) { a++; }
                 for (int i = 0; i < str; i++)
                 {
                     for (int k = 0; k < stn; k++)
@@ -170,28 +178,65 @@ namespace Optimizasyon1._0
                         if (dizi2[i,k] != -1)
                         {
                            
-                            if (0 <= U[i]) {
+                            if (-25 != U[i]) {
                                 V[k] = dizi[i, k] - U[i];
+                             //   TextKutu[i,k].Text = Convert.ToString(V[k] + "+" + k );
                             }
-                            else if(0 <= V[k])
+                            if (-25 != V[k])
                             {
                                 U[i] = dizi[i, k] - V[k];
-                              //  LabelKutu[0, 0].Text = Convert.ToString(U[i]);
+                              // TextKutu[i, k].Text = Convert.ToString(U[i] + "-" + i);
                             }
                         }
                     }
                 }
                
             }//u0 u 1 v1 v3
-            LabelKutu[0, 0].Text = Convert.ToString(U[0]);
-            LabelKutu[1, 0].Text = Convert.ToString(U[1]);
-            LabelKutu[2, 0].Text = Convert.ToString(U[2]);
-            LabelKutu[3, 0].Text = Convert.ToString(U[3]);
-            LabelKutu[0, 0].Text = Convert.ToString(V[0]);
-            LabelKutu[0, 1].Text = Convert.ToString(V[1]);
-            LabelKutu[0, 2].Text = Convert.ToString(V[2]);
-            LabelKutu[0, 3].Text = Convert.ToString(V[3]);
+            //LabelKutu[0, 0].Text = Convert.ToString(U[0]);
+            //LabelKutu[1, 0].Text = Convert.ToString(U[1]);
+            //LabelKutu[2, 0].Text = Convert.ToString(U[2]);
+            //LabelKutu[3, 0].Text = Convert.ToString(U[3]);
+            //LabelKutu[0, 0].Text = Convert.ToString(V[0]);
+            //LabelKutu[0, 1].Text = Convert.ToString(V[1]);
+            //LabelKutu[0, 2].Text = Convert.ToString(V[2]);
+            //LabelKutu[0, 3].Text = Convert.ToString(V[3]);
         }
+        private void OptimumHesapla()
+        {
+            int a = 0;
+            for (int i = 0; i < str; i++)
+            {
+                for (int k = 0; k < stn; k++)
+                {
+                    if (dizi2[i, k] == -1)
+                    {
+                        O[a] = dizi[i, k] - (U[i] + V[k]);
+
+                      //  TextKutu[i, k].Text = Convert.ToString(O[a]);
+                        a++;
+                    }
+                }
+            }
+            for (int i = 0; i < a; i++)
+            {
+                if(O[a] < 0)
+                {
+                    var LabelHata = new Label();
+                    LabelHata.Left = 20;
+                    LabelHata.Top = 60;
+                    LabelHata.Width = 500;
+                    LabelHata.Text = "Bu çözüm optimum yol değildir. En iyi sonuç bulunamadı. Negatif değer var.";
+                    this.Controls.Add(LabelHata);
+                }
+            }
+            var LabelDogru = new Label();
+            LabelDogru.Left = 20;
+            LabelDogru.Top = 60;
+            LabelDogru.Width = 500;
+            LabelDogru.Text = "Bu çözüm optimum yoldur. En iyi sonuç bulundu. Tüm değerler pozitif ya da 0.";
+            this.Controls.Add(LabelDogru);
+        }
+                        
         private void button1_Click(object sender, EventArgs e)
         {
             KutuOlustur();
