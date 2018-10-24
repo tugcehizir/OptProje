@@ -19,6 +19,7 @@ namespace Optimizasyon1._0
         TextBox[,] TextKutu;
         TextBox[,] TextKutu2;
         Label[,] LabelKutu;
+        int[] U,V;
         public Form1()
         {
             InitializeComponent();
@@ -35,13 +36,18 @@ namespace Optimizasyon1._0
             str = Convert.ToInt32(textBox1.Text);
             stn = Convert.ToInt32(textBox2.Text);
             
+            //Dizileri oluşturuyor
             TextKutu = new TextBox[str, stn];
             TextKutu2 = new TextBox[str, stn];
             LabelKutu = new Label[str, stn];
+            U = new int[str];
+            V = new int[stn];
+            
             dizi = new int[str, stn];
             dizi2 = new int[str, stn];
             DiziDoldur(str, stn);
-
+            
+            //Formdaki Textboxlar oluşturuluyor
             int left = 100;
             int top = 120;
             int left2 = 155;
@@ -74,6 +80,7 @@ namespace Optimizasyon1._0
                 left2 = 155;
             }
 
+            //Formdaki labellar oluşturuluyor
             int labeltop = 120;
             int labelleft = 20;
             for (int i = 0; i < str; i++)
@@ -130,7 +137,9 @@ namespace Optimizasyon1._0
                     }
                 }           
             }
-            //TextKutu[1, 1].Text = Convert.ToString(dizi[0, 0] + dizi2[1, 1]);
+           // TextKutu[1, 1].Text = Convert.ToString(dizi[0, 0] + dizi2[1, 1]);
+        
+            MatrisHesapla();
         }
         private void DiziDoldur(int a, int b)
         {
@@ -142,29 +151,55 @@ namespace Optimizasyon1._0
                     dizi2[i, k] = -1;
                 }
             }
+
+          
         }
-        
+        private void MatrisHesapla()
+        {
+            //Buraya geldi1
+            U[0] = 0;
+            int a = 0,b=0;
+            while (a == 0)
+            {
+                if(b == 2) {  }
+                TextKutu[0, 0].Text = "a = 0";
+                for (int i = 0; i < str; i++)
+                {
+                    for (int k = 0; k < stn; k++)
+                    {
+                        if (dizi2[i,k] != -1)
+                        {
+                            TextKutu[0, 1].Text = "a = 1";
+                            if (0 <= U[i]) {
+                                V[k] = dizi[i, k] - U[i];
+                                TextKutu[1, 0].Text = "a =2";
+                            }
+                            else if(0 <= V[k])
+                            {
+                                U[i] = dizi[i, k] - V[k];
+                                TextKutu[1, 1].Text = "a = 2";
+                              
+                            }
+                            a++;
+                        }
+                    }
+                }
+                
+            }
+
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             KutuOlustur();
             button1.Hide();
             button2.Show();
-            //MatrisHesapla();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             MatrisDoldur();
+           
         }
     }
 }
