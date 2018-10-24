@@ -158,35 +158,39 @@ namespace Optimizasyon1._0
         {
             //Buraya geldi1
             U[0] = 0;
-            int a = 0,b=0;
-            while (a == 0)
+            int a = 10,b=0;
+            while (a == 10)
             {
-                if(b == 2) {  }
-                TextKutu[0, 0].Text = "a = 0";
+                b++;
+                if (b == 10) { a++; }
                 for (int i = 0; i < str; i++)
                 {
                     for (int k = 0; k < stn; k++)
                     {
                         if (dizi2[i,k] != -1)
                         {
-                            TextKutu[0, 1].Text = "a = 1";
+                           
                             if (0 <= U[i]) {
                                 V[k] = dizi[i, k] - U[i];
-                                TextKutu[1, 0].Text = "a =2";
                             }
                             else if(0 <= V[k])
                             {
                                 U[i] = dizi[i, k] - V[k];
-                                TextKutu[1, 1].Text = "a = 2";
-                              
+                              //  LabelKutu[0, 0].Text = Convert.ToString(U[i]);
                             }
-                            a++;
                         }
                     }
                 }
-                
-            }
-
+               
+            }//u0 u 1 v1 v3
+            LabelKutu[0, 0].Text = Convert.ToString(U[0]);
+            LabelKutu[1, 0].Text = Convert.ToString(U[1]);
+            LabelKutu[2, 0].Text = Convert.ToString(U[2]);
+            LabelKutu[3, 0].Text = Convert.ToString(U[3]);
+            LabelKutu[0, 0].Text = Convert.ToString(V[0]);
+            LabelKutu[0, 1].Text = Convert.ToString(V[1]);
+            LabelKutu[0, 2].Text = Convert.ToString(V[2]);
+            LabelKutu[0, 3].Text = Convert.ToString(V[3]);
         }
         private void button1_Click(object sender, EventArgs e)
         {
