@@ -31,6 +31,32 @@ namespace Optimizasyon1._0
             this.WindowState = FormWindowState.Maximized;
             
         }
+        private void ZminHesap()
+        {
+            //Yeni label oluşturmak***
+            //Label label = new Label();
+            //label.Top = 100;
+            //label.Left = 100;
+            //label.Width = 100;
+            //label.Text = "label1";
+
+            //this.Controls.Add(label);
+
+            int toplam = 0;
+            for (int i = 0; i < str; i++)
+            {
+                for (int k = 0; k < stn; k++)
+                {
+                    if (dizi2[i, k] != -1)
+                    {
+                       
+                        toplam += dizi2[i, k] * dizi[i, k];
+                    }
+                    textBox3.Text = Convert.ToString(toplam);
+                }
+            }
+            
+        }
         private void KutuOlustur()
         {
             str = Convert.ToInt32(textBox1.Text);
@@ -149,6 +175,7 @@ namespace Optimizasyon1._0
             }
             MatrisHesapla();
             OptimumHesapla();
+            ZminHesap();
         }
         private void DiziDoldur(int a, int b)
         {
@@ -167,8 +194,7 @@ namespace Optimizasyon1._0
         {
             //Buraya geldi1
             U[0] = 0;
-         
-            int a = 10,b=0;
+            
             for (int p = 0; p < 5; p++)
             {
                 for (int i = 0; i < str; i++)
@@ -235,6 +261,7 @@ namespace Optimizasyon1._0
             LabelDogru.Width = 500;
             LabelDogru.Text = "Bu çözüm optimum yoldur. En iyi sonuç bulundu. Tüm değerler pozitif ya da 0.";
             this.Controls.Add(LabelDogru);
+            
         }
                         
         private void button1_Click(object sender, EventArgs e)
