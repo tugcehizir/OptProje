@@ -17,6 +17,7 @@ namespace Optimizasyon1._0
         int[,] dizi;
         int[,] dizi2;
         TextBox[,] TextKutu;
+        TextBox[] TextKutuBos;
         TextBox[,] TextKutu2;
         Label[,] LabelKutu;
         int[] U,V,O;
@@ -52,7 +53,7 @@ namespace Optimizasyon1._0
                        
                         toplam += dizi2[i, k] * dizi[i, k];
                     }
-                    textBox3.Text = Convert.ToString(toplam);
+                    label3.Text = Convert.ToString("Zmin: " + toplam);
                 }
             }
             
@@ -64,6 +65,7 @@ namespace Optimizasyon1._0
             
             //Dizileri oluşturuyor
             TextKutu = new TextBox[str, stn];
+            TextKutuBos = new TextBox[str + stn];
             TextKutu2 = new TextBox[str, stn];
             LabelKutu = new Label[str, stn];
             U = new int[str];
@@ -89,23 +91,46 @@ namespace Optimizasyon1._0
                     TextKutu[i, k].Width = 50;
                     TextKutu[i, k].Text = "";
                     this.Controls.Add(TextKutu[i, k]);
-                   
-
+                    
                     TextKutu2[i, k] = new TextBox();
                     TextKutu2[i, k].Left = left2;
                     TextKutu2[i, k].Top = top;
                     TextKutu2[i, k].Width = 20;
                     TextKutu2[i, k].Text = "";
                     this.Controls.Add(TextKutu2[i, k]);
+                    
 
                     left += 90;
                     left2 += 90;
-
                 }
+                TextKutuBos[i] = new TextBox();
+                TextKutuBos[i].Left = left;
+                TextKutuBos[i].Top = top;
+                TextKutuBos[i].Width = 50;
+                TextKutuBos[i].Text = "";
+                this.Controls.Add(TextKutuBos[i]);
+
+
                 top = top + 60;
                 left = 100;
                 left2 = 155;
+
             }
+            //arz talep satır sütunu
+            for (int i = 0; i < str+1 ; i++)
+            {
+
+                TextKutuBos[i] = new TextBox();
+                TextKutuBos[i].Left = left;
+                TextKutuBos[i].Top = top;
+                TextKutuBos[i].Width = 50;
+                TextKutuBos[i].Text = "";
+                this.Controls.Add(TextKutuBos[i]);
+
+                left += 90;
+
+            }
+            
 
             //Formdaki labellar oluşturuluyor
             int labeltop = 120;
@@ -227,6 +252,17 @@ namespace Optimizasyon1._0
             //LabelKutu[0, 2].Text = Convert.ToString(V[2]);
             //LabelKutu[0, 3].Text = Convert.ToString(V[3]);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult tus;
+            tus = colorDialog1.ShowDialog();
+            if (tus == DialogResult.OK)
+            {
+                this.BackColor = colorDialog1.Color;
+            }
+        }
+
         private void OptimumHesapla()
         {
             int a = 0;
