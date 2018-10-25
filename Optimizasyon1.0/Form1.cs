@@ -12,7 +12,7 @@ namespace Optimizasyon1._0
 {
     public partial class Form1 : Form
     {
-
+        string strdeger, stndeger;
         int str = 0, stn = 0;
         int[,] dizi;
         int[,] dizi2;
@@ -20,7 +20,11 @@ namespace Optimizasyon1._0
         TextBox[] TextKutuBos;
         TextBox[,] TextKutu2;
         Label[,] LabelKutu;
+        Label[] LabelArz;
+        Label[] LabelTalep;
         int[] U,V,O;
+        int arztplm = 0, taleptplm = 0;
+       
         public Form1()
         {
             InitializeComponent();
@@ -62,12 +66,15 @@ namespace Optimizasyon1._0
         {
             str = Convert.ToInt32(textBox1.Text);
             stn = Convert.ToInt32(textBox2.Text);
-            
+            strdeger = Convert.ToString(textBox3.Text);
+            stndeger = Convert.ToString(textBox4.Text);
             //Dizileri oluşturuyor
             TextKutu = new TextBox[str, stn];
             TextKutuBos = new TextBox[str + stn];
             TextKutu2 = new TextBox[str, stn];
             LabelKutu = new Label[str, stn];
+            LabelArz = new Label[stn+1];
+            LabelTalep = new Label[str + 1];
             U = new int[str];
             V = new int[stn];
             O = new int[str * stn];
@@ -103,6 +110,7 @@ namespace Optimizasyon1._0
                     left += 90;
                     left2 += 90;
                 }
+           //arz talep satır sütunu1
                 TextKutuBos[i] = new TextBox();
                 TextKutuBos[i].Left = left;
                 TextKutuBos[i].Top = top;
@@ -116,6 +124,7 @@ namespace Optimizasyon1._0
                 left2 = 155;
 
             }
+            
             //arz talep satır sütunu
             for (int i = 0; i < str+1 ; i++)
             {
@@ -128,10 +137,10 @@ namespace Optimizasyon1._0
                 this.Controls.Add(TextKutuBos[i]);
 
                 left += 90;
-
+               
             }
             
-
+         
             //Formdaki labellar oluşturuluyor
             int labeltop = 120;
             int labelleft = 20;
@@ -142,24 +151,47 @@ namespace Optimizasyon1._0
                 LabelKutu[i, k].Left =labelleft;
                 LabelKutu[i, k].Top = labeltop;
                 LabelKutu[i, k].Width = 60;
-                LabelKutu[i, k].Text = "Fabrika " + (i+1);
+                LabelKutu[i, k].Text = strdeger + (i+1) ;
                 this.Controls.Add(LabelKutu[i, k]);
-
+                
                 labeltop += 60;
             }
+            for (int k = str; k < str + 1; k++)
+            {
+                
+                LabelArz[k] = new Label();
+                LabelArz[k].Left = labelleft;
+                LabelArz[k].Top = labeltop;
+                LabelArz[k].Width = 60;
+                LabelArz[k].Text = "Talep";
+                this.Controls.Add(LabelArz[k]);
 
+            }
             labelleft = 100;
             for (int k = 0; k < stn; k++)
             {
+
                 int i = 0;
                 LabelKutu[i, k] = new Label();
                 LabelKutu[i, k].Left = labelleft;
                 LabelKutu[i, k].Top = 90;
                 LabelKutu[i, k].Width = 60;
-                LabelKutu[i, k].Text = "Pazar" + (k+1);
+                LabelKutu[i, k].Text = stndeger + (k+1);
                 this.Controls.Add(LabelKutu[i, k]);
 
                 labelleft += 90;
+                
+            }
+            for (int i = stn; i < stn+1; i++)
+            {
+               
+                LabelArz[i] = new Label();
+                LabelArz[i].Left = labelleft;
+                LabelArz[i].Top = 90;
+                LabelArz[i].Width = 60;
+                LabelArz[i].Text = "Arz";
+                this.Controls.Add(LabelArz[i]);
+                
             }
 
         }
@@ -264,6 +296,12 @@ namespace Optimizasyon1._0
             }
         }
 
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+      
 
         private void OptimumHesapla()
         {
