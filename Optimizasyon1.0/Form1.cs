@@ -161,6 +161,7 @@ namespace Optimizasyon1._0
 
                 labelleft += 90;
             }
+
         }
         private void MatrisDoldur()
         {
@@ -262,6 +263,7 @@ namespace Optimizasyon1._0
                 this.BackColor = colorDialog1.Color;
             }
         }
+
 
         private void OptimumHesapla()
         {

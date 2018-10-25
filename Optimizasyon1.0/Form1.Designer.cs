@@ -86,7 +86,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(264, 12);
+            this.button2.Location = new System.Drawing.Point(264, 11);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(87, 43);
@@ -106,9 +106,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(434, 12);
+            this.button3.Location = new System.Drawing.Point(467, 12);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 43);
+            this.button3.Size = new System.Drawing.Size(114, 44);
             this.button3.TabIndex = 7;
             this.button3.Text = "Arkaplan rengi";
             this.button3.UseVisualStyleBackColor = true;
@@ -118,6 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(611, 377);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
