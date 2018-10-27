@@ -18,13 +18,14 @@ namespace Optimizasyon1._0
         int[,] dizi2;
         TextBox[,] TextKutu;
         TextBox[] TextKutuBos;
+        TextBox[] TextKutuBos2;
         TextBox[,] TextKutu2;
         Label[,] LabelKutu;
         Label[] LabelArz;
         Label[] LabelTalep;
         int[] U,V,O;
-        int arztplm = 0, taleptplm = 0;
-       
+        int toplam = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -38,15 +39,6 @@ namespace Optimizasyon1._0
         }
         private void ZminHesap()
         {
-            //Yeni label oluşturmak***
-            //Label label = new Label();
-            //label.Top = 100;
-            //label.Left = 100;
-            //label.Width = 100;
-            //label.Text = "label1";
-
-            //this.Controls.Add(label);
-
             int toplam = 0;
             for (int i = 0; i < str; i++)
             {
@@ -71,17 +63,19 @@ namespace Optimizasyon1._0
             //Dizileri oluşturuyor
             TextKutu = new TextBox[str, stn];
             TextKutuBos = new TextBox[str + stn];
+            TextKutuBos2 = new TextBox[str + stn];
             TextKutu2 = new TextBox[str, stn];
             LabelKutu = new Label[str, stn];
             LabelArz = new Label[stn+1];
             LabelTalep = new Label[str + 1];
+            
             U = new int[str];
             V = new int[stn];
             O = new int[str * stn];
 
             dizi = new int[str, stn];
             dizi2 = new int[str, stn];
-            DiziDoldur(str, stn);
+            
             
             //Formdaki Textboxlar oluşturuluyor
             int left = 100;
@@ -110,7 +104,7 @@ namespace Optimizasyon1._0
                     left += 90;
                     left2 += 90;
                 }
-           //arz talep satır sütunu1
+                //arz sütunu
                 TextKutuBos[i] = new TextBox();
                 TextKutuBos[i].Left = left;
                 TextKutuBos[i].Top = top;
@@ -125,19 +119,20 @@ namespace Optimizasyon1._0
 
             }
             
-            //arz talep satır sütunu
-            for (int i = 0; i < str+1 ; i++)
+            //talep satırı
+            for (int i = 0; i < stn+1 ; i++)
             {
 
-                TextKutuBos[i] = new TextBox();
-                TextKutuBos[i].Left = left;
-                TextKutuBos[i].Top = top;
-                TextKutuBos[i].Width = 50;
-                TextKutuBos[i].Text = "";
-                this.Controls.Add(TextKutuBos[i]);
-
+                TextKutuBos2[i] = new TextBox();
+                TextKutuBos2[i].Left = left;
+                TextKutuBos2[i].Top = top;
+                TextKutuBos2[i].Width = 50;
+                TextKutuBos2[i].Text = "";
+                this.Controls.Add(TextKutuBos2[i]);
+             
                 left += 90;
-               
+           
+                //label6.Text = Convert.ToString();
             }
             
          
@@ -156,17 +151,16 @@ namespace Optimizasyon1._0
                 
                 labeltop += 60;
             }
-            for (int k = str; k < str + 1; k++)
-            {
-                
-                LabelArz[k] = new Label();
-                LabelArz[k].Left = labelleft;
-                LabelArz[k].Top = labeltop;
-                LabelArz[k].Width = 60;
-                LabelArz[k].Text = "Talep";
-                this.Controls.Add(LabelArz[k]);
-
-            }
+            //talep satırı
+            int tlp = 0;
+            LabelTalep[tlp] = new Label();
+            LabelTalep[tlp].Left = labelleft;
+            LabelTalep[tlp].Top = labeltop;
+            LabelTalep[tlp].Width = 60;
+            LabelTalep[tlp].Text = "Talep";
+            this.Controls.Add(LabelTalep[tlp]);
+            tlp++;
+            
             labelleft = 100;
             for (int k = 0; k < stn; k++)
             {
@@ -182,19 +176,19 @@ namespace Optimizasyon1._0
                 labelleft += 90;
                 
             }
-            for (int i = stn; i < stn+1; i++)
-            {
-               
-                LabelArz[i] = new Label();
-                LabelArz[i].Left = labelleft;
-                LabelArz[i].Top = 90;
-                LabelArz[i].Width = 60;
-                LabelArz[i].Text = "Arz";
-                this.Controls.Add(LabelArz[i]);
-                
-            }
+            int arzf = 0;
+            LabelArz[arzf] = new Label();
+            LabelArz[arzf].Left = labelleft;
+            LabelArz[arzf].Top = 90;
+            LabelArz[arzf].Width = 60;
+            LabelArz[arzf].Text = "Arz";
+            this.Controls.Add(LabelArz[arzf]);
+            arzf++;
+
+            DiziDoldur(str, stn);
 
         }
+
         private void MatrisDoldur()
         {
             for (int i = 0; i < str; i++)
@@ -234,6 +228,8 @@ namespace Optimizasyon1._0
             MatrisHesapla();
             OptimumHesapla();
             ZminHesap();
+          
+        
         }
         private void DiziDoldur(int a, int b)
         {
@@ -246,7 +242,6 @@ namespace Optimizasyon1._0
                 }
             }
 
-          
         }
         private void MatrisHesapla()
         {
@@ -301,7 +296,14 @@ namespace Optimizasyon1._0
 
         }
 
-      
+      private void ArzTopla()
+        {
+            for (int i = 0; i < str; i++)
+            {
+                toplam += Convert.ToInt32(TextKutuBos2[i].Text);
+            }
+            TextKutuBos2[stn].Text = Convert.ToString(toplam);
+        }
 
         private void OptimumHesapla()
         {
@@ -351,7 +353,8 @@ namespace Optimizasyon1._0
         private void button2_Click(object sender, EventArgs e)
         {
             MatrisDoldur();
-           
+            ArzTopla();
+
         }
     }
 }
