@@ -43,6 +43,7 @@ namespace Optimizasyon1._0
             this.label5 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -95,7 +96,7 @@ namespace Optimizasyon1._0
             this.button2.Location = new System.Drawing.Point(410, 11);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 43);
+            this.button2.Size = new System.Drawing.Size(87, 50);
             this.button2.TabIndex = 5;
             this.button2.Text = "Hesapla";
             this.button2.UseVisualStyleBackColor = true;
@@ -115,7 +116,7 @@ namespace Optimizasyon1._0
             // 
             this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.button3.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button3.Location = new System.Drawing.Point(518, 36);
+            this.button3.Location = new System.Drawing.Point(584, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(25, 24);
             this.button3.TabIndex = 7;
@@ -155,12 +156,23 @@ namespace Optimizasyon1._0
             this.textBox4.Size = new System.Drawing.Size(100, 22);
             this.textBox4.TabIndex = 11;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(518, 43);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 17);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Sa";
+            this.label6.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(611, 386);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label5);
@@ -203,6 +215,7 @@ namespace Optimizasyon1._0
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label6;
     }
 }
 

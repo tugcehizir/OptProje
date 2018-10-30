@@ -24,7 +24,6 @@ namespace Optimizasyon1._0
         Label[] LabelArz;
         Label[] LabelTalep;
         int[] U,V,O;
-        int toplam = 0;
 
         public Form1()
         {
@@ -227,7 +226,7 @@ namespace Optimizasyon1._0
             }
             MatrisHesapla();
             OptimumHesapla();
-            ZminHesap();
+            
           
         
         }
@@ -270,7 +269,9 @@ namespace Optimizasyon1._0
                     }
                 }
                
-            }//u0 u 1 v1 v3
+            }
+            ArzTopla();
+            //u0 u 1 v1 v3
             //LabelKutu[0, 0].Text = Convert.ToString(U[0]);
             //LabelKutu[1, 0].Text = Convert.ToString(U[1]);
             //LabelKutu[2, 0].Text = Convert.ToString(U[2]);
@@ -298,11 +299,26 @@ namespace Optimizasyon1._0
 
       private void ArzTopla()
         {
+            int toplam = 0;
+            int toplam2 = 0;
             for (int i = 0; i < str; i++)
             {
-                toplam += Convert.ToInt32(TextKutuBos2[i].Text);
+                toplam += Convert.ToInt32(TextKutuBos[i].Text);
             }
-            TextKutuBos2[stn].Text = Convert.ToString(toplam);
+            for (int i = 0; i < stn; i++)
+            {
+                toplam2 += Convert.ToInt32(TextKutuBos2[i].Text);
+            }
+            if (toplam != toplam2)
+            {
+                label6.Text = "Arz ve talep eşit değil.";
+                label6.Visible = true;
+            }
+            else
+            {
+                label6.Visible = false;
+            }
+            TextKutuBos2[stn].Text = Convert.ToString(toplam + " | " + toplam2);
         }
 
         private void OptimumHesapla()
@@ -316,14 +332,19 @@ namespace Optimizasyon1._0
                     {
                         O[a] = dizi[i, k] - (U[i] + V[k]);
 
-                      //  TextKutu[i, k].Text = Convert.ToString(O[a]);
+                        //TextKutu[i, k].Text = Convert.ToString(O[a]);
                         a++;
                     }
                 }
             }
+            ZminHesap();
             for (int i = 0; i < a; i++)
             {
-                if(O[a] < 0)
+            //    TextKutu[0, 0].Text = Convert.ToString(O[0]);
+            //    TextKutu[0, 1].Text = Convert.ToString(O[1]);
+            //    TextKutu[1, 0].Text = Convert.ToString(O[2]);
+            //    TextKutu[1, 1].Text = Convert.ToString(O[3]);
+                if (O[i] < 0)
                 {
                     var LabelHata = new Label();
                     LabelHata.Left = 20;
@@ -331,7 +352,10 @@ namespace Optimizasyon1._0
                     LabelHata.Width = 500;
                     LabelHata.Text = "Bu çözüm optimum yol değildir. En iyi sonuç bulunamadı. Negatif değer var.";
                     this.Controls.Add(LabelHata);
+                    OptimumDegil();
+                    break;
                 }
+
             }
             var LabelDogru = new Label();
             LabelDogru.Left = 20;
@@ -341,7 +365,20 @@ namespace Optimizasyon1._0
             this.Controls.Add(LabelDogru);
             
         }
-                        
+        private void OptimumDegil()
+        {
+            for (int i = 0; i < str; i++)
+            {
+                for (int k = 0; k < stn; k++)
+                {
+                    TextKutu[i, k].Text = "";
+                    TextKutu2[i, k].Text = "";
+                }
+            }
+            label6.Text = "";
+            DiziDoldur(str,stn);
+            TextKutuBos2[stn].Text = "";
+        }           
         private void button1_Click(object sender, EventArgs e)
         {
             KutuOlustur();
@@ -353,7 +390,7 @@ namespace Optimizasyon1._0
         private void button2_Click(object sender, EventArgs e)
         {
             MatrisDoldur();
-            ArzTopla();
+      
 
         }
     }
