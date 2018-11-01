@@ -331,7 +331,7 @@ namespace Optimizasyon1._0
                     if (dizi2[i, k] == -1)
                     {
                         O[a] = dizi[i, k] - (U[i] + V[k]);
-
+                        label7.Text = label7.Text + " - V" + (a+1) + "=" + O[a];
                         //TextKutu[i, k].Text = Convert.ToString(O[a]);
                         a++;
                     }
